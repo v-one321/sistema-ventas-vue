@@ -16,6 +16,12 @@
                     <li class="nav-item">
                         <RouterLink class="nav-link" to="/proveedor">Proveedores</RouterLink>
                     </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/cliente">Clientes</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/producto">Productos</RouterLink>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">
@@ -53,5 +59,5 @@
     }
 </script>
 <style>
-    
+ 
 </style>

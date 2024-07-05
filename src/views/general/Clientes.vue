@@ -2,7 +2,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header bg-primary-subtle">
-                <h5 class="card-title">Proveedores registrados</h5>
+                <h5 class="card-title">Clientes registrados</h5>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -21,7 +21,6 @@
                                         <th>Nombre(s)</th>
                                         <th>Apellido(s)</th>
                                         <th>Numero identificacion</th>
-                                        <th>Contacto</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -31,7 +30,6 @@
                                         <td>{{ indice + 1 }}</td>
                                         <td>{{ item.nombre }}</td>
                                         <td>{{ item.apellido }}</td>
-                                        <td>{{ item.contacto }}</td>
                                         <td>{{ item.identificacion }}</td>
                                         <td><span class="badge" :class="item.estado ? 'bg-success' : 'bg-danger'">{{
                                                 item.estado?'Activo':'Inactivo'}}</span></td>
@@ -74,7 +72,7 @@
 </template>
 <script setup>
 import { onMounted, ref } from 'vue';
-import { changeStatus, index } from '@/services/proveedoresService';
+import { changeStatus, index } from '@/services/clientesService';
 import { RouterLink, useRouter } from 'vue-router'
 import Swal from 'sweetalert2';
 const datos = ref([]);
@@ -123,7 +121,7 @@ const estado = param => {
     }
 }
 const agregar = () => {
-    router.push({ path: '/proveedor-formulario' });
+    router.push({ path: '/cliente-formulario' });
 }
 const paginaNext = () => {
     paginacion.value.pagina++;
@@ -138,7 +136,7 @@ const paginaCambio = param => {
     listar();
 }
 const editar = param => {
-    router.push({ path: `/proveedor-formulario/${param}` });
+    router.push({ path: `/cliente-formulario/${param}` });
 }
 </script>
 <style></style>

@@ -4,6 +4,10 @@ import Dashboard from '@/views/general/Dashboard.vue';
 import Proveedores from '@/views/general/Proveedores.vue';
 import LayoutApp from '@/layout/LayoutApp.vue';
 import ProveedoresForm from '@/views/general/Proveedores-form.vue';
+import ClientesForm from '@/views/general/Clientes-form.vue';
+import Clientes from '@/views/general/Clientes.vue';
+import Productos from '@/views/general/Productos.vue';
+import ProductosForm from '@/views/general/Producto-form.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,9 +29,25 @@ const router = createRouter({
           component: Proveedores
         },
         {
-          path: '/proveedor-formulario',
+          path: '/proveedor-formulario/:idProveedor?',
           component: ProveedoresForm
         },
+        {
+          path: '/cliente',
+          component: Clientes
+        },
+        {
+          path: '/cliente-formulario/:idCliente?',
+          component: ClientesForm
+        },
+        {
+          path: '/producto',
+          component: Productos
+        },
+        {
+          path: '/producto-formulario/:idProducto?',
+          component: ProductosForm
+        }
       ]
     },
     
