@@ -14,6 +14,6 @@ export const changeStatus = id => {
 export const show = id => {
     return http().get(`${urlBase}clientes/${id}`);
 }
-export const proveedoresActivos = () => {
+export const clientesActivos = () => {
     return http().get(`${urlBase}clientes-activos`);
 }

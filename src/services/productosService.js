@@ -14,6 +14,6 @@ export const changeStatus = id => {
 export const show = id => {
     return http().get(`${urlBase}productos/${id}`);
 }
-export const proveedoresActivos = () => {
-    return http().get(`${urlBase}productos-activos`);
+export const productosActivos = page => {
+    return http().get(`${urlBase}productos-activos?page=${page}`);
 }

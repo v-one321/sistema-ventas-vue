@@ -7,22 +7,22 @@
             <div class="card-body">
                 <div class="row gy-4">
                     <div class="col-12 col-md-6">
-                        <label for="nombre" class="form-label">Nombre</label>
+                        <label for="nombre" class="form-label text-muted fw-bold">Nombre</label>
                         <input type="text" id="nombre" class="form-control" :class="{'border-danger' : errors.nombre }" placeholder="Escriba..." v-model="formulario.nombre">
                         <small class="text-danger" v-if="errors.nombre"><i class="fas fa-times me-1"></i>{{ errors.nombre[0] }}</small>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="apellido" class="form-label">Apellido</label>
+                        <label for="apellido" class="form-label text-muted fw-bold">Apellido</label>
                         <input type="text" id="apellido" class="form-control" :class="{'border-danger' : errors.apellido }" placeholder="Escriba..." v-model="formulario.apellido">
                         <small class="text-danger" v-if="errors.apellido"><i class="fas fa-times me-1"></i>{{ errors.apellido[0] }}</small>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="identificacion" class="form-label">Identificacion</label>
+                        <label for="identificacion" class="form-label text-muted fw-bold">Identificacion</label>
                         <input type="text" id="identificacion" class="form-control" :class="{'border-danger' : errors.identificacion }" placeholder="Escriba..." v-model="formulario.identificacion">
                         <small class="text-danger" v-if="errors.identificacion"><i class="fas fa-times me-1"></i>{{ errors.identificacion[0] }}</small>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="contacto" class="form-label">Contacto</label>
+                        <label for="contacto" class="form-label text-muted fw-bold">Contacto</label>
                         <input type="number" id="contacto" class="form-control" :class="{'border-danger' : errors.contacto }" placeholder="Ej. 7777777" v-model="formulario.contacto">
                         <small class="text-danger" v-if="errors.contacto"><i class="fas fa-times me-1"></i>{{ errors.contacto[0] }}</small>
                     </div>

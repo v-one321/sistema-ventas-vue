@@ -8,6 +8,8 @@ import ClientesForm from '@/views/general/Clientes-form.vue';
 import Clientes from '@/views/general/Clientes.vue';
 import Productos from '@/views/general/Productos.vue';
 import ProductosForm from '@/views/general/Producto-form.vue';
+import Compras from '@/views/movimientos/Compras.vue';
+import ComprasFormulario from '@/views/movimientos/Compras-formulario.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -47,6 +49,14 @@ const router = createRouter({
         {
           path: '/producto-formulario/:idProducto?',
           component: ProductosForm
+        },
+        {
+          path: '/compras',
+          component: Compras
+        },
+        {
+          path: '/compras-formulario',
+          component: ComprasFormulario
         }
       ]
     },

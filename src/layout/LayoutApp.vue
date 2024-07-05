@@ -22,6 +22,9 @@
                     <li class="nav-item">
                         <RouterLink class="nav-link" to="/producto">Productos</RouterLink>
                     </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/compras-formulario">Compras</RouterLink>
+                    </li>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown">

@@ -7,27 +7,27 @@
             <div class="card-body">
                 <div class="row gy-4">
                     <div class="col-12 col-md-6">
-                        <label for="nombre" class="form-label">Nombre</label>
+                        <label for="nombre" class="form-label text-muted fw-bold">Nombre</label>
                         <input type="text" id="nombre" class="form-control" :class="{'border-danger' : errors.nombre }" placeholder="Escriba..." v-model="formulario.nombre">
                         <small class="text-danger" v-if="errors.nombre"><i class="fas fa-times me-1"></i>{{ errors.nombre[0] }}</small>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="codigo" class="form-label">Codigo</label>
+                        <label for="codigo" class="form-label text-muted fw-bold">Codigo</label>
                         <input type="text" id="codigo" class="form-control" :class="{'border-danger' : errors.codigo }" placeholder="Escriba..." v-model="formulario.codigo">
                         <small class="text-danger" v-if="errors.codigo"><i class="fas fa-times me-1"></i>{{ errors.codigo[0] }}</small>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="precio_compra" class="form-label">Precio <small class="text-danger">(Compra)</small></label>
+                        <label for="precio_compra" class="form-label text-muted fw-bold">Precio <small class="text-danger">(Compra)</small></label>
                         <input type="text" id="precio_compra" class="form-control" :class="{'border-danger' : errors.precio_compra }" placeholder="Escriba..." v-model="formulario.precio_compra">
                         <small class="text-danger" v-if="errors.precio_compra"><i class="fas fa-times me-1"></i>{{ errors.precio_compra[0] }}</small>
                     </div>
                     <div class="col-12 col-md-6">
-                        <label for="precio_venta" class="form-label">Precio <small class="text-danger">(Venta)</small></label>
+                        <label for="precio_venta" class="form-label text-muted fw-bold">Precio <small class="text-danger">(Venta)</small></label>
                         <input type="text" id="precio_venta" class="form-control" :class="{'border-danger' : errors.precio_venta }" placeholder="Ej. 7777777" v-model="formulario.precio_venta">
                         <small class="text-danger" v-if="errors.precio_venta"><i class="fas fa-times me-1"></i>{{ errors.precio_venta[0] }}</small>
                     </div>
                     <div class="col-12">
-                        <label for="descripcion" class="form-label">Descripcion</label>
+                        <label for="descripcion" class="form-label text-muted fw-bold">Descripcion</label>
                         <textarea id="descripcion" class="form-control" :class="{'border-danger' : errors.descripcion }" placeholder="Ej. 7777777" v-model="formulario.descripcion"></textarea>
                         <small class="text-danger" v-if="errors.descripcion"><i class="fas fa-times me-1"></i>{{ errors.descripcion[0] }}</small>
                     </div>
