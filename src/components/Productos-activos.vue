@@ -13,7 +13,7 @@
                                     <tr>
                                         <th>Nombre</th>
                                         <th>Codigo</th>
-                                        <th>Precio <small class="text-danger">(Compra)</small></th>
+                                        <th>Precio <small class="text-danger">({{ propiedades.tipoPrecio == 'compra' ? 'Compra' : 'Venta'}})</small></th>
                                         <th>Stock</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -22,9 +22,9 @@
                                     <tr v-for="item in datos" :key="item.id">
                                         <td>{{ item.nombre }}</td>
                                         <td>{{ item.codigo }}</td>
-                                        <td>{{ item.precio_compra }}</td>
+                                        <td>{{ propiedades.tipoPrecio == 'compra' ? item.precio_compra : item.precio_venta}}</td>
                                         <td>{{ item.cantidad }}</td>
-                                        <td class="text-center"><button class="btn btn-primary btn-sm" @click="addCarritoCompras(item)"><i class="fas fa-plus"></i></button></td>
+                                        <td class="text-center"><button class="btn btn-primary btn-sm" @click="propiedades.tipoPrecio=='compra'? addCarritoCompras(item) : addCarritoVentas(item)"><i class="fas fa-plus"></i></button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -55,14 +55,20 @@
 </template>
 <script setup>
 import { productosActivos } from '@/services/productosService';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, defineProps } from 'vue';
 import { useCarritoStore } from '@/stores/carrito';
 const datos = ref([]);
 const paginacion = ref({
     total: null,
     pagina: 1,
 });
-const { addCarritoCompras } = useCarritoStore();
+const { addCarritoCompras, addCarritoVentas } = useCarritoStore();
+const propiedades = defineProps({
+    tipoPrecio: {
+        type: String,
+        required: true,
+    }
+});
 const listar = async () => {
     try {
         const { data } = await productosActivos(paginacion.value.pagina);

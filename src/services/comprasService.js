@@ -8,6 +8,6 @@ export const store = formulario => {
 export const show = id => {
     return http().get(`${urlBase}compras/${id}`);
 }
-export const estado = id => {
+export const changeStatus = id => {
     return http().delete(`${urlBase}compras/${id}`);
 }

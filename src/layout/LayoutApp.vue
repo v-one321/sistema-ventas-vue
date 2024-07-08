@@ -23,7 +23,10 @@
                         <RouterLink class="nav-link" to="/producto">Productos</RouterLink>
                     </li>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" to="/compras-formulario">Compras</RouterLink>
+                        <RouterLink class="nav-link" to="/compras">Compras</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/ventas">Ventas</RouterLink>
                     </li>
                 </ul>
                 <ul class="navbar-nav">

@@ -2,7 +2,7 @@
     <div class="container mt-5">
         <div class="card">
             <div class="card-header bg-primary-subtle">
-                <h5 class="card-title">Compras registradas</h5>
+                <h5 class="card-title">Ventas registradas</h5>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -19,7 +19,6 @@
                                     <tr>
                                         <th>Item</th>
                                         <th>Proveedor</th>
-                                        <th>Contacto</th>
                                         <th>Numero identificacion</th>
                                         <th>Total</th>
                                         <th>Estado</th>
@@ -29,9 +28,8 @@
                                 <tbody>
                                     <tr v-for="(item, indice) in datos" :key="item.id">
                                         <td>{{ indice + 1 }}</td>
-                                        <td>{{ item.proveedores.nombre }} {{ item.proveedores.apellido }}</td>
-                                        <td>{{ item.proveedores.contacto }}</td>
-                                        <td>{{ item.proveedores.identificacion }}</td>
+                                        <td>{{ item.clientes.nombre }} {{ item.clientes.apellido }}</td>
+                                        <td>{{ item.clientes.identificacion }}</td>
                                         <td class="text-end">{{ item.total }}</td>
                                         <td><span class="badge" :class="item.estado ? 'bg-success' : 'bg-danger'">{{
                                             item.estado ? 'Activo' : 'Inactivo' }}</span></td>
@@ -76,7 +74,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-primary-subtle">
-                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Detalle de compra</h1>
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Detalle de venta</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -94,7 +92,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="item in dato.detalle_compra" :key="item.id">
+                                        <tr v-for="item in dato.detalle_venta" :key="item.id">
                                             <td>{{ item.producto.nombre }}</td>
                                             <td>{{ item.producto.codigo }}</td>
                                             <td>{{ item.cantidad }}</td>
@@ -124,7 +122,7 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router'
 import Swal from 'sweetalert2';
-import { changeStatus, index, show } from '@/services/comprasService';
+import { changeStatus, index, show } from '@/services/ventasService';
 import { Modal } from 'bootstrap/dist/js/bootstrap.bundle';
 const datos = ref([]);
 const paginacion = ref({
@@ -177,7 +175,7 @@ const estado = param => {
     }
 }
 const agregar = () => {
-    router.push({ path: '/compras-formulario' });
+    router.push({ path: '/ventas-formulario' });
 }
 const paginaNext = () => {
     paginacion.value.pagina++;

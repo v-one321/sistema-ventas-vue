@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <div class="row gy-4">
-            <ProductosActivosVue tipoPrecio="compra" />
+            <ProductosActivosVue tipoPrecio="venta" />
             <div class="col-12 col-md-6">
                 <div class="card">
                     <div class="card-header bg-primary-subtle">
@@ -10,10 +10,10 @@
                     <div class="card-body">
                         <div class="row gy-3">
                             <div class="col-12">
-                                <label for="proveedor" class="form-label fw-bold text-muted">Proveedor</label>
-                                <select name="proveedor" id="proveedor" class="form-select" v-model="proveedor">
+                                <label for="cliente" class="form-label fw-bold text-muted">Cliente</label>
+                                <select name="cliente" id="cliente" class="form-select" v-model="cliente">
                                     <option value="">Seleccione</option>
-                                    <option :value="item.id" v-for="item in proveedores" :key="item.id">{{ item.nombre
+                                    <option :value="item.id" v-for="item in clientes" :key="item.id">{{ item.nombre
                                         }} {{ item.apellido }}</option>
                                 </select>
                             </div>
@@ -31,20 +31,20 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr v-for="(item, indice) in useStore.carritoCompras" :key="indice">
+                                            <tr v-for="(item, indice) in useStore.carritoVentas" :key="indice">
                                                 <td>{{ item.nombre }}</td>
                                                 <td>{{ item.codigo }}</td>
                                                 <td>{{ item.precio_unitario }}</td>
                                                 <td>{{ item.cantidad }}</td>
                                                 <td>{{ item.precio_total }}</td>
                                                 <td><button type="button" class="btn btn-danger btn-sm"
-                                                        @click="useStore.eliminarCarritoCompra(indice)"><i
+                                                        @click="useStore.eliminarCarritoVenta(indice)"><i
                                                             class="fas fa-trash"></i></button></td>
                                             </tr>
                                         </tbody>
                                         <tfoot>
                                             <th colspan="4" class="text-end fs-4 fw-bold">TOTAL</th>
-                                            <th class="text-end fs-4">{{ useStore.totalCompras }}Bs</th>
+                                            <th class="text-end fs-4">{{ useStore.totalVentas }}Bs</th>
                                         </tfoot>
                                     </table>
                                 </div>
@@ -62,20 +62,20 @@
 </template>
 <script setup>
 import ProductosActivosVue from '@/components/Productos-activos.vue';
-import { store } from '@/services/comprasService';
-import { proveedoresActivos } from '@/services/proveedoresService';
+import { store } from '@/services/ventasService';
+import { clientesActivos } from '@/services/clientesService';
 import { useCarritoStore } from '@/stores/carrito';
 import Swal from 'sweetalert2';
 import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 const useStore = useCarritoStore();
-const proveedores = ref([]);
-const proveedor = ref('');
+const clientes = ref([]);
+const cliente = ref('');
 const router = useRouter();
 const listar = async () => {
     try {
-        const { data } = await proveedoresActivos();
-        proveedores.value = data.datos;
+        const { data } = await clientesActivos();
+        clientes.value = data.datos;
     } catch (error) {
         console.log(error);
     }
@@ -86,12 +86,12 @@ onMounted(() => {
 const guardar = async () => {
     try {
         let objeto = {
-            total: useStore.totalCompras,
-            proveedor_id: proveedor.value,
-            detalle: useStore.carritoCompras
+            total: useStore.totalVentas,
+            cliente_id: cliente.value,
+            detalle: useStore.carritoVentas
         }
         const { data } = await store(objeto);
-        useStore.carritoCompras = [];
+        useStore.carritoVentas = [];
         Swal.fire({
             text: data.mensaje,
             title: 'Bien!',
@@ -99,11 +99,19 @@ const guardar = async () => {
         });
         cancelar();
     } catch (error) {
-        console.log(error);
+        if (error.response.status == 422) {
+            Swal.fire({
+                title: 'Error!',
+                text: error.response.data.message,
+                icon: 'error'
+            })
+        } else {
+            console.log(error);
+        }
     }
 }
 const cancelar = () => {
-    router.push({path: '/compras'});
+    router.push({path: '/ventas'});
 }
 </script>
 <style></style>
