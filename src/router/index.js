@@ -15,7 +15,7 @@ import VentasFormulario from '@/views/movimientos/Ventas-formulario.vue';
 import Perfil from '@/views/administracion/Perfil.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory('#'),
   routes: [
     {
       path: '/login',
