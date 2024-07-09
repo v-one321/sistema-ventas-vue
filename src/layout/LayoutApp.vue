@@ -37,7 +37,7 @@
                                 width="40px" height="40px" class="rounded-circle" alt="">{{ userStore.usuario.nombre }}</a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <a href="ver-perfil.html" class="dropdown-item">Ver perfil</a>
+                                <RouterLink class="dropdown-item" to="/perfil">Ver perfil</RouterLink>
                             </li>
                             <li>
                                 <button type="button" class="dropdown-item" @click="logout()">Cerrar sesión</button>
@@ -68,5 +68,9 @@
     }
 </script>
 <style>
- 
+    .nav-link.router-link-active{
+        background-color: #1894FF;
+        color: white;
+        border-radius: 30px;
+    }
 </style>

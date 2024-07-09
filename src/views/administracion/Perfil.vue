@@ -39,7 +39,7 @@
                     <div class="card-body">
                         <div class="row gy-3">
                             <div class="col-12 text-center">
-                                <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" class="rounded-circle" width="150" height="150" alt="">
+                                <img :src="urlImage" width="150" height="150" class="rounded-circle" alt="">
                             </div>
                             <div class="col-12">
                                 <label for="imagen" class="form-label">Seleccione una imagen</label>
@@ -58,6 +58,7 @@
 <script setup>
 import { actualizarImagen, show, update } from '@/services/usuarioService';
 import { useUserStore } from '@/stores/usuario';
+import Swal from 'sweetalert2';
 import { ref, onMounted } from 'vue';
 const userStore = useUserStore();
 const dato = ref({
@@ -86,6 +87,11 @@ const editarDatos = async () => {
         }
         localStorage.setItem('usuario', JSON.stringify(objeto));
         userStore.obtenerPerfil();
+        Swal.fire({
+            text: data.mensaje,
+            title: 'Bien!',
+            icon:'success'
+        })
     } catch (error) {
         console.log(error);
     }
@@ -94,8 +100,14 @@ onMounted(() => {
     listar();
 })
 const image = ref(null);
+const urlImage = ref('https://cdn-icons-png.flaticon.com/512/21/21104.png');
 const obtenerImagen = (event)=>{
     image.value = event.target.files[0];
+    if (image.value != null) {
+        const reader = new FileReader();
+        reader.onload = (e) => urlImage.value = e.target.result;
+        reader.readAsDataURL(image.value);
+    }
 }
 const editarImagen = async () => {
     try {
@@ -103,7 +115,6 @@ const editarImagen = async () => {
         formulario.append('imagen', image.value);
         formulario.append('id', userStore.usuario.id);
         const { data } = await actualizarImagen(formulario);
-        console.log(data);
         let objeto = {
             nombre: data.datos.name,
             email: data.datos.email,
@@ -112,6 +123,11 @@ const editarImagen = async () => {
         }
         localStorage.setItem('usuario', JSON.stringify(objeto));
         userStore.obtenerPerfil();
+        Swal.fire({
+            text: data.mensaje,
+            title: 'Bien!',
+            icon: 'success'
+        })
     } catch (error) {
         console.log(error);
     }
