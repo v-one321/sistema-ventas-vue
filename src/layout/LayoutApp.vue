@@ -33,8 +33,8 @@
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg"
-                                width="40px" height="40px" class="rounded-circle" alt="">Vladimir</a>
+                            <img :src="userStore.usuario.image != null ? urlBaseAsset+'imagenes/'+userStore.usuario.image : 'https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg'"
+                                width="40px" height="40px" class="rounded-circle" alt="">{{ userStore.usuario.nombre }}</a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
                                 <a href="ver-perfil.html" class="dropdown-item">Ver perfil</a>
@@ -53,7 +53,10 @@
 <script setup>
     import { cerrarSesion } from "@/services/authService";
     import { RouterView, RouterLink, useRouter } from "vue-router";
+    import { useUserStore } from "@/stores/usuario";
+    import { urlBaseAsset } from "@/services/Http";
     const router = useRouter();
+    const userStore = useUserStore();
     const logout = async () => {
         try {
             const { data } = await cerrarSesion();

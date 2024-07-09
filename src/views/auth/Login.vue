@@ -59,6 +59,7 @@ import { useRouter } from 'vue-router'
             const tokenEncrypt = Buffer.from(data.access_token).toString("base64");
             localStorage.setItem('token', tokenEncrypt)
             let objeto = {
+                id: data.user.id,
                 nombre: data.user.name,
                 email: data.user.email,
                 image: data.user.foto_perfil,

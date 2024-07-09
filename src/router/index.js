@@ -12,6 +12,7 @@ import Compras from '@/views/movimientos/Compras.vue';
 import ComprasFormulario from '@/views/movimientos/Compras-formulario.vue';
 import Ventas from '@/views/movimientos/Ventas.vue';
 import VentasFormulario from '@/views/movimientos/Ventas-formulario.vue';
+import Perfil from '@/views/administracion/Perfil.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -67,6 +68,10 @@ const router = createRouter({
         {
           path: '/ventas-formulario',
           component: VentasFormulario
+        },
+        {
+          path: '/perfil',
+          component: Perfil
         }
       ]
     },
